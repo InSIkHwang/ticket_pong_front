@@ -11,17 +11,17 @@ const PaymentButton = styled.button`
   font-weight: 600;
   text-align: center;
   line-height: 30px;
-  color: #fff;
+  color: #ffffff;
   border-radius: 5px;
   border: none;
   transition: all 0.2s;
-  background: #fa5a5a;
-  box-shadow: 0px 5px 0px 0px #bb4343;
+  background: #fc1055;
+  box-shadow: 0px 5px 0px 0px #393f59;
 
   &:hover {
     margin-top: 15px;
     margin-bottom: 5px;
-    box-shadow: 0px 0px 0px 0px #fa5a5a;
+    box-shadow: 0px 0px 0px 0px #393f59;
   }
 `;
 const Payment = (effect, deps) => {
@@ -40,7 +40,8 @@ const Payment = (effect, deps) => {
 
   const onClickPayment = () => {
     const { IMP } = window;
-    IMP.init("imp83485354"); // 결제 데이터 정의
+    IMP.init("imp83485354");
+    // 결제 데이터 정의
     const data = {
       pg: "kcp.AO09C", // PG사 코드.PG상점아이디
       pay_method: "card", // 결제수단
