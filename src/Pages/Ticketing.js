@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Payment from "./Payment";
+import Payment from "../Components/Payment";
 import Poster from "../img/poster_sample.jpg";
 
 const Banner = styled.div`

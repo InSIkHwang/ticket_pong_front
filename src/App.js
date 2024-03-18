@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Payment from "./component/Payment";
-import Ticketing from "./component/Ticketing";
-import LoadData from "./component/Axios";
+
+import Ticketing from "./Pages/Ticketing";
+import LoadData from "./Components/Axios";
 
 function App() {
   return (
