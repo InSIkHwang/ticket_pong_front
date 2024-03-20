@@ -1,0 +1,123 @@
+/* 슬라이더 */
+.prevButton,
+.nextButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border: none;
+  font-size: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.prevButton {
+  left: 0;
+}
+
+.nextButton {
+  right: 0;
+}
+
+.prevButton:focus {
+  background-color: #fc1055;
+}
+
+.nextButton:focus {
+  background-color: #fc1055;
+}
+
+/* 본문 */
+.btncontainer {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 150px;
+}
+
+strong {
+  font-size: 55px;
+  margin-bottom: 20px;
+}
+
+.btncontainer .categoryBtn button {
+  width: 140px; /* 버튼의 고정 너비 */
+  height: 60px; /* 버튼의 고정 높이 */
+  font-size: 25px;
+  background-color: gray; /* 비활성화된 버튼의 배경색 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 40px; /* 버튼 사이 여백 설정 */
+  margin-right: 5px; /* 우측 여백 */
+  margin-left: 5px; /* 좌측 여백 */
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.btncontainer .categoryBtn button:focus {
+  background-color: #fc1055; /* 활성화된 버튼의 배경색 */
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.container ul {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.container ul li {
+  display: inline-block;
+  margin-right: 20px;
+  vertical-align: top;
+}
+
+.container ul li img {
+  display: block;
+  width: 400px;
+  height: 590px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.container ul li p {
+  margin: 0;
+}
+
+.container li p {
+  font-size: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 이름만 길이 제약 */
+.container li p.over {
+  font-size: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 텍스트가 범위를 넘으면 생략 (...) */
+  white-space: nowrap;
+  max-width: 350px;
+}
+
+.viewallbtn:nth-child(1) {
+  margin-top: 100px;
+  width: 350px; /* 버튼의 고정 너비 */
+  height: 100px; /* 버튼의 고정 높이 */
+  border-radius: 50px;
+  background-color: white;
+  color: #fc1055;
+  border: 10px solid #fc1055;
+  text-align: center;
+  font-size: 30px;
+}

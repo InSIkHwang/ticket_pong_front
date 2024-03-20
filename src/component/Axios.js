@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 const convert = require("xml-js");
@@ -6,19 +6,44 @@ const convert = require("xml-js");
 const Axios = () => {
   useEffect(() => {
     async function fetchdata() {
-      const { data } = await axios.get(
-        "/restful/pblprfr?service=b82c2ae6ed6c45fc9ee2b22742eb9bbc&stdate=20240301&eddate=20240430&cpage=1&rows=5&prfstate=02&signgucode=11&signgucodesub=1111&kidstate=Y&newsql=Y"
-      );
+      try {
+        const { data } = await axios.get(
+          "/restful/boxoffice?service=09719826f9f142e0864780884cbb13e7&ststype=day&date=20221201&catecode=AAAA&area=11&srchseatscale=100&newsql=Y"
+        );
 
-      // console.log(data);
-      const result = data;
-      const xmlToJson = convert.xml2json(result, { compact: true, spaces: 1 });
-      const obj = JSON.parse(xmlToJson);
-      console.log(obj);
+        // XML 데이터를 JSON으로 변환
+        const result = data;
+        const xmlToJson = convert.xml2json(result, {
+          compact: true,
+          spaces: 1,
+        });
+        const obj = JSON.parse(xmlToJson);
+
+        // json 데이터를 저장
+        // saveDataToFile(obj);
+        console.log("데이터입력완료.");
+      } catch (err) {
+        console.error(err);
+      }
     }
     fetchdata();
   }, []);
 
-  return;
+  // json 데이터 다운로드 코드
+  // const saveDataToFile = (jsonData) => {
+  //   const jsonDataString = JSON.stringify(jsonData, null, 2);
+  //   const blob = new Blob([jsonDataString], { type: "application/json" });
+  //   const url = URL.createObjectURL(blob);
+  //   const a = document.createElement("a");
+  //   a.href = url;
+  //   a.download = "data.json"; // 파일명 설정
+  //   document.body.appendChild(a);
+  //   a.click();
+  //   document.body.removeChild(a);
+  //   URL.revokeObjectURL(url);
+  // };
+
+  // return null;
 };
+
 export default Axios;
