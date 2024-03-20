@@ -3,8 +3,8 @@ import App from "./component/App";
 import ViewAll from "./pages/ViewAll";
 import Community from "./pages/Community";
 import Homepage from "./component/HomePage";
-import Ticketing from "./Pages/Ticketing";
-import ShowListPage from "./Pages/ShowListPage";
+import Ticketing from "./pages/Ticketing";
+import ShowListPage from "./pages/ShowListPage";
 
 function Main() {
   return (
