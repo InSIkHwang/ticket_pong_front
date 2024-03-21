@@ -1,0 +1,28 @@
+[
+  {
+    "pre_id": "review0001",
+    "imp_uid": "imp0001",
+    "user_id": "user0001",
+    "mt20id": "PF236318",
+    "manage_id": "admin1",
+    "mt10id": "FC002162",
+    "pretitle": "스쿨오브락 대존잼!!",
+    "precontent": "굿~",
+    "predate": "20240402173604",
+    "prestar": 5,
+    "recommend": 5
+  },
+  {
+    "pre_id": "review0002",
+    "imp_uid": "imp0002",
+    "user_id": "user0002",
+    "mt20id": "PF236399",
+    "manage_id": "admin2",
+    "mt10id": "FC002165",
+    "pretitle": "뭔지 모를 리뷰",
+    "precontent": "뭔지 모를 리뷰~",
+    "predate": "20240302173604",
+    "prestar": 5,
+    "recommend": 5
+  }
+]

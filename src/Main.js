@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./component/App";
-import ViewAll from "./pages/ViewAll";
-import Community from "./pages/Community";
+import ViewAll from "./Pages/ViewAll";
+import Community from "./Pages/Community";
 import Homepage from "./component/HomePage";
-import Ticketing from "./pages/Ticketing";
-import ShowListPage from "./pages/ShowListPage";
+import Ticketing from "./Pages/Ticketing";
+import ShowListPage from "./Pages/ShowListPage";
 
 function Main() {
   return (
