@@ -4,10 +4,12 @@ import Payment from "../Components/Payment";
 import { useNavigate } from "react-router";
 import jsonDataDetail from "../dummy/show_detail.json";
 import jsonDataTime from "../dummy/show_time.json";
+import jsonDataReview from "../dummy/reviews.json";
 import Calendar from "../Components/Calendar";
 
 const dataDetail = jsonDataDetail;
 const dataTime = jsonDataTime;
+const dataReview = jsonDataReview;
 
 const TicketingWrapper = styled.div`
   margin: 0 auto;
@@ -156,6 +158,85 @@ const SeatTimeData = styled.span`
   font-weight: 700;
 `;
 
+const PaymentWrapper = styled.div`
+  display: flex;
+
+  margin-top: 19px;
+`;
+
+const TicketingTabWrapper = styled.div`
+  margin: 30px 10px;
+`;
+const TicketingTabs = styled.div`
+  margin: 0 auto;
+`;
+const TicketingTabList = styled.ul`
+  display: flex;
+  padding: 0;
+  margin: 0 auto;
+`;
+const TicketingTabItem = styled.li`
+  position: relative;
+  flex: 1;
+  list-style: none;
+  text-align: center;
+  &:last-child {
+    border-right: 1px solid #d8d9df;
+  }
+`;
+const TicketingTabBtn = styled.button`
+  border: none;
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 12px 10px 13px;
+  border-top: 1px solid #d8d9df;
+  border-left: 1px solid #d8d9df;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #373a42;
+  box-sizing: border-box;
+
+  background-color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+
+  color: ${({ active }) => (active ? "#F5167E" : "#818181")};
+  border-color: ${({ active }) => (active ? "#F5167E" : "#d8d9df")};
+  border-right: ${({ active }) => (active ? "1px solid #F5167E;" : "none")};
+  border-bottom: ${({ active }) => (active ? "none" : "1px solid #F5167E")};
+  outline: none;
+`;
+
+const TabContentWrapper = styled.div`
+  margin: 30px 10px;
+`;
+const TabContentDetail = styled.div`
+  margin: 30px 10px;
+  h2 {
+    font-size: 18px;
+    padding-left: 30px;
+  }
+`;
+
+const TabContentDetailImg = styled.div`
+  margin: 0 auto;
+  text-align: center;
+  img {
+    max-width: 100%;
+  }
+`;
+
+const TabContentReview = styled.div`
+  margin: 30px 10px;
+`;
+const TabContentPlace = styled.div`
+  margin: 30px 10px;
+`;
+const TabContentNotice = styled.div`
+  margin: 30px 10px;
+`;
+
 const Ticketing = () => {
   const navigate = useNavigate();
   const clickHome = () => {
@@ -202,6 +283,11 @@ const Ticketing = () => {
       (data) => data.playTime === replaced_str
     );
     setSelectedTimeData(selectedData);
+  };
+
+  const [activeTab, setActiveTab] = useState(0);
+  const handleTabClick = (index) => {
+    setActiveTab(index);
   };
 
   return (
@@ -323,7 +409,61 @@ const Ticketing = () => {
           </>
         </SeatBox>
       </SeatWrapper>
-      <Payment></Payment>
+      <PaymentWrapper>
+        <Payment />
+      </PaymentWrapper>
+
+      <TicketingTabWrapper>
+        <TicketingTabs>
+          <TicketingTabList>
+            <TicketingTabItem>
+              <TicketingTabBtn
+                active={activeTab === 0}
+                onClick={() => handleTabClick(0)}
+              >
+                상세정보
+              </TicketingTabBtn>
+            </TicketingTabItem>
+            <TicketingTabItem>
+              <TicketingTabBtn
+                active={activeTab === 1}
+                onClick={() => handleTabClick(1)}
+              >
+                관람후기
+              </TicketingTabBtn>
+            </TicketingTabItem>
+            <TicketingTabItem>
+              <TicketingTabBtn
+                active={activeTab === 2}
+                onClick={() => handleTabClick(2)}
+              >
+                장소안내
+              </TicketingTabBtn>
+            </TicketingTabItem>
+            <TicketingTabItem>
+              <TicketingTabBtn
+                active={activeTab === 3}
+                onClick={() => handleTabClick(3)}
+              >
+                예매유의사항
+              </TicketingTabBtn>
+            </TicketingTabItem>
+          </TicketingTabList>
+        </TicketingTabs>
+      </TicketingTabWrapper>
+      <TabContentWrapper>
+        {activeTab === 0 && (
+          <TabContentDetail>
+            <h2>작품 상세 정보</h2>
+            <TabContentDetailImg>
+              <img src={dataDetail.styurl} alt="" />
+            </TabContentDetailImg>
+          </TabContentDetail>
+        )}
+        {activeTab === 1 && <TabContentReview>Review</TabContentReview>}
+        {activeTab === 2 && <TabContentPlace>Place</TabContentPlace>}
+        {activeTab === 3 && <TabContentNotice>Notice</TabContentNotice>}
+      </TabContentWrapper>
     </TicketingWrapper>
   );
 };

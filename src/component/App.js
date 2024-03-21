@@ -6,9 +6,7 @@ function App({ children }) {
   return (
     <>
       <Header className={style.nav} />
-      <div className={style.body} style={{ overflow: "scroll" }}>
-        {children}
-      </div>
+      <div className={style.body}>{children}</div>
       <Footer className={style.footer} />
     </>
   );

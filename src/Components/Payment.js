@@ -4,11 +4,10 @@ import styled from "styled-components";
 const PaymentButton = styled.button`
   display: block;
   position: relative;
-  float: right;
   width: 180px;
   font-size: 22px;
   padding: 0;
-  margin: 10px 20px 10px 10px;
+  margin: 10px 20px 10px auto;
   font-weight: 600;
   text-align: center;
   height: 50px;
