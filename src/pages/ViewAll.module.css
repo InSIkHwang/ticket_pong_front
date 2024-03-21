@@ -1,0 +1,95 @@
+.btncontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 150px;
+}
+
+.btncontainer button {
+  width: 100px; /* 버튼의 고정 너비 */
+  height: 40px; /* 버튼의 고정 높이 */
+  background-color: gray; /* 비활성화된 버튼의 배경색 */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 100px;
+  margin-bottom: 10px; /* 버튼 사이 여백 설정 */
+  margin-right: 5px; /* 우측 여백 */
+  margin-left: 5px; /* 좌측 여백 */
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.btncontainer button:focus {
+  background-color: red; /* 활성화된 버튼의 배경색 */
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.container ul {
+  /* inline-block */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+  /* 가로로 넘칠때 줄바꿈 */
+}
+
+.container ul li {
+  flex: 0 0 calc(20% - 20px); /* 가로로 4개씩 나열하므로 25%로 설정하고 간격을 고려해 너비를 계산합니다. */
+  margin: 10px;
+  box-sizing: border-box;
+
+  display: inline-block;
+  margin-right: 20px;
+  vertical-align: top;
+}
+
+.container ul li img {
+  display: block;
+  width: 400px;
+  height: 590px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.container ul li p {
+  margin: 0;
+}
+
+.container li p {
+  font-size: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 이름만 길이 제약 */
+.container li p.over {
+  font-size: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 텍스트가 범위를 넘으면 생략 (...) */
+  white-space: nowrap;
+  max-width: 350px;
+}
+
+.moredisplay:nth-child(1) {
+  margin-top: 100px;
+  width: 250px; /* 버튼의 고정 너비 */
+  height: 100px; /* 버튼의 고정 높이 */
+  border-radius: 30px;
+  background-color: white;
+  color: pink;
+  border: 10px solid pink;
+  text-align: center;
+  font-size: 30px;
+}
