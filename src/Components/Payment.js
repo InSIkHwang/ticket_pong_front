@@ -4,25 +4,18 @@ import styled from "styled-components";
 const PaymentButton = styled.button`
   display: block;
   position: relative;
-  float: left;
-  width: 100px;
+  width: 180px;
+  font-size: 22px;
   padding: 0;
-  margin: 10px 20px 10px 10px;
+  margin: 10px 20px 10px auto;
   font-weight: 600;
   text-align: center;
-  line-height: 30px;
+  height: 50px;
   color: #ffffff;
-  border-radius: 5px;
+  border-radius: 30px;
   border: none;
-  transition: all 0.2s;
   background: #fc1055;
-  box-shadow: 0px 5px 0px 0px #393f59;
-
-  &:hover {
-    margin-top: 15px;
-    margin-bottom: 5px;
-    box-shadow: 0px 0px 0px 0px #393f59;
-  }
+  cursor: pointer;
 `;
 const Payment = (effect, deps) => {
   useEffect(() => {
@@ -63,7 +56,7 @@ const Payment = (effect, deps) => {
 
   return (
     <>
-      <PaymentButton onClick={onClickPayment}>결제하기</PaymentButton>
+      <PaymentButton onClick={onClickPayment}>예매하기</PaymentButton>
     </>
   );
 };

@@ -1,0 +1,181 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh; /* 전체 화면을 커버하도록 설정 */
+}
+
+.sidebar {
+  width: 280px; /* 사이드바의 너비를 조절합니다. */
+  background-color: white;
+  padding: 20px;
+  margin-top: 100px;
+  margin-right: 100px;
+  font-size: 22px;
+}
+
+span {
+  font-size: 20px;
+}
+
+.content {
+  width: 70%; /* 컨텐츠의 너비를 조절합니다. */
+  padding: 20px;
+  margin-top: 100px;
+}
+.item {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: #e0e0e0;
+}
+
+.box {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  height: 700px;
+  overflow-y: auto;
+}
+
+/* ============================================================== */
+/* 공지사항 게시판 css */
+
+/* 게시판 컨테이너 스타일 */
+.boardContainer {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+/* 게시판 표 스타일 */
+.postTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+/* 테이블 헤더 스타일 */
+.postTable th {
+  padding: 8px;
+  text-align: center;
+  background-color: #f2f2f2;
+}
+
+.postTable th:nth-child(2) {
+  text-align: left;
+}
+
+/* 테이블 행 스타일 */
+.postTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+/* 선택된 행 스타일 */
+.postTable tr.selectedRow {
+  background-color: #eaeaea;
+}
+
+/* 테이블 데이터 셀 스타일 */
+.postTable td {
+  padding: 8px;
+}
+
+.postTable th:first-child,
+.postTable td:first-child,
+.postTable th:last-child,
+.postTable td:last-child {
+  width: 20%; /* id 및 date 열의 비중 */
+}
+
+.postTable th:nth-child(2),
+.postTable td:nth-child(2) {
+  width: 60%; /* title 열의 비중 */
+}
+
+/* Optional: Adjusting title text alignment */
+.postTable td:nth-child(2) {
+  text-align: left; /* 제목 텍스트를 왼쪽 정렬로 변경 */
+}
+
+/* 게시글 내용 컨테이너 스타일 */
+.postContentContainer {
+  margin-top: 20px;
+}
+
+/* 게시글 내용 스타일 */
+.postContent {
+  margin-bottom: 10px;
+}
+/* 게시글 내용 글자크기 */
+td {
+  font-size: 24px;
+}
+/* 목록으로 돌아가기 버튼 스타일 */
+.goBackButton {
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+/* 목록으로 돌아가기 버튼 호버 스타일 */
+.goBackButton:hover {
+  background-color: #0056b3;
+}
+
+.pagination {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.pagination button {
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 0;
+  background-color: white;
+  font-size: 16px;
+}
+
+/* 게시판 내용 */
+
+.postContentContainer {
+  position: relative;
+}
+
+.postContent {
+  max-height: calc(1.2em * 7); /* 최대 7줄의 높이로 설정 */
+  overflow: hidden;
+  margin-bottom: 300px; /* 공백 추가 */
+}
+
+.postContent::after {
+  content: "";
+  display: block;
+  height: 0;
+  width: 100%;
+  visibility: hidden;
+}
+
+.goBackButton {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  font-size: 16px;
+  background-color: #fc1055;
+}
+
+/* 공지사항 */
+.box h2 {
+  margin-bottom: 20px;
+}
+.box li {
+  margin: 10px 0px;
+  font-size: 20px;
+}
