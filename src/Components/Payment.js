@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-const PaymentButton = styled.button`
+export const PongButton = styled.button`
   display: block;
   position: relative;
   width: 180px;
@@ -56,7 +56,7 @@ const Payment = (effect, deps) => {
 
   return (
     <>
-      <PaymentButton onClick={onClickPayment}>예매하기</PaymentButton>
+      <PongButton onClick={onClickPayment}>예매하기</PongButton>
     </>
   );
 };
