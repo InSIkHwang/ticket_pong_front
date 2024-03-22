@@ -1,241 +1,16 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import Payment from "../Components/Payment";
+import Payment, { PongButton } from "../Components/Payment";
 import { useNavigate } from "react-router";
 import jsonDataDetail from "../dummy/show_detail.json";
 import jsonDataTime from "../dummy/show_time.json";
 import jsonDataReview from "../dummy/reviews.json";
 import Calendar from "../Components/Calendar";
+import * as S from "./styled_components/Styled_components_Ticketing";
+import PlaceMap from "../Components/PlaceMap";
 
-const dataDetail = jsonDataDetail;
+export const dataDetail = jsonDataDetail;
 const dataTime = jsonDataTime;
 const dataReview = jsonDataReview;
-
-const TicketingWrapper = styled.div`
-  margin: 0 auto;
-  width: 1120px;
-`;
-const ContentWrpper = styled.div`
-  margin: 30px 10px;
-  text-align: center;
-`;
-
-const ContentTitle = styled.div`
-  text-align: left;
-  margin: 0 auto;
-  margin-top: 100px;
-  border-bottom: 1px solid black;
-  width: 90%;
-  font-weight: 400;
-  strong {
-    font-weight: 600;
-    font-size: 36px;
-  }
-
-  span {
-    font-size: 24px;
-  }
-`;
-
-const NavLocation = styled.div`
-  color: #666666;
-  left: 0;
-  span {
-    font-size: 14px;
-    margin-right: 8px;
-    cursor: pointer;
-  }
-`;
-
-const ContentDetail = styled.div`
-  display: flex;
-
-  margin: 30px 80px;
-  justify-content: center;
-`;
-const ContentDetailPoster = styled.div`
-  min-width: 400px;
-  height: 573px;
-  background-image: url(${dataDetail.poster});
-  background-size: cover;
-  background-position: center;
-`;
-const ContentDetailInfo = styled.div`
-  padding-left: 50px;
-  width: 65%;
-  font-size: 18px;
-  font-weight: 400;
-
-  ul {
-    padding: 0 10px 10px 10px;
-    margin-left: 0;
-    display: flex;
-    width: 95%;
-
-    margin-bottom: 20px;
-  }
-  li {
-    font-weight: 700;
-    white-space: nowrap;
-  }
-
-  span {
-    text-align: left;
-    margin-left: 15px;
-  }
-`;
-
-const SeatWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 2fr 1.8fr;
-  height: 350px;
-  margin: 30px 10px;
-  text-align: center;
-  border: 1px solid black;
-  border-radius: 15px;
-`;
-
-const SeatBox = styled.div`
-  display: flex;
-  padding: 20px;
-  border-left: 1px solid #bfbfbf;
-  border-radius: 0 15px 15px 0;
-  align-items: flex-start;
-  justify-content: space-between;
-`;
-
-const BoxHeader = styled.div`
-  display: block;
-  width: 100px;
-  text-align: left;
-  span {
-    display: block;
-    font-size: 18px;
-    margin-top: 0;
-    font-weight: 700;
-  }
-`;
-
-const TimeItemList = styled.div`
-  overflow-y: overlay;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(36, 36, 40, 0.4) rgba(0, 0, 0, 0);
-  padding-top: 24px;
-  width: 257px;
-  height: 100%;
-  border: 0;
-  vertical-align: top;
-`;
-
-const TimeItemBtn = styled.button`
-  padding: 11px 18px 11px 15px;
-  width: 100%;
-  border: 1px solid #373a42;
-  border-radius: 12px;
-  text-align: left;
-  margin-bottom: 10px;
-  height: 60px;
-  font-size: 18px;
-  background-color: #fff;
-
-  &.select {
-    color: #fc1055;
-    border-color: #fc1055;
-  }
-`;
-
-const SeatList = styled.ul`
-  padding: 0;
-`;
-const SeatItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-`;
-const SeatTimeData = styled.span`
-  color: #ab003c;
-  font-weight: 700;
-`;
-
-const PaymentWrapper = styled.div`
-  display: flex;
-
-  margin-top: 19px;
-`;
-
-const TicketingTabWrapper = styled.div`
-  margin: 30px 10px;
-`;
-const TicketingTabs = styled.div`
-  margin: 0 auto;
-`;
-const TicketingTabList = styled.ul`
-  display: flex;
-  padding: 0;
-  margin: 0 auto;
-`;
-const TicketingTabItem = styled.li`
-  position: relative;
-  flex: 1;
-  list-style: none;
-  text-align: center;
-  &:last-child {
-    border-right: 1px solid #d8d9df;
-  }
-`;
-const TicketingTabBtn = styled.button`
-  border: none;
-  display: block;
-  position: relative;
-  width: 100%;
-  padding: 12px 10px 13px;
-  border-top: 1px solid #d8d9df;
-  border-left: 1px solid #d8d9df;
-  font-size: 18px;
-  line-height: 1.5;
-  color: #373a42;
-  box-sizing: border-box;
-
-  background-color: #fff;
-  cursor: pointer;
-  font-weight: 700;
-
-  color: ${({ active }) => (active ? "#F5167E" : "#818181")};
-  border-color: ${({ active }) => (active ? "#F5167E" : "#d8d9df")};
-  border-right: ${({ active }) => (active ? "1px solid #F5167E;" : "none")};
-  border-bottom: ${({ active }) => (active ? "none" : "1px solid #F5167E")};
-  outline: none;
-`;
-
-const TabContentWrapper = styled.div`
-  margin: 30px 10px;
-`;
-const TabContentDetail = styled.div`
-  margin: 30px 10px;
-  h2 {
-    font-size: 18px;
-    padding-left: 30px;
-  }
-`;
-
-const TabContentDetailImg = styled.div`
-  margin: 0 auto;
-  text-align: center;
-  img {
-    max-width: 100%;
-  }
-`;
-
-const TabContentReview = styled.div`
-  margin: 30px 10px;
-`;
-const TabContentPlace = styled.div`
-  margin: 30px 10px;
-`;
-const TabContentNotice = styled.div`
-  margin: 30px 10px;
-`;
 
 const Ticketing = () => {
   const navigate = useNavigate();
@@ -291,25 +66,26 @@ const Ticketing = () => {
   };
 
   return (
-    <TicketingWrapper>
-      <ContentWrpper>
-        <ContentTitle>
-          <NavLocation>
+    <S.TicketingWrapper>
+      <S.ContentWrapper>
+        <S.ContentTitle>
+          <S.NavLocation>
             <span onClick={clickHome}>HOME</span>
             <span>/</span>
             <span onClick={clickShowList}>공연전시예매</span>
             <span>/</span>
             <span onClick={clickGenre}>{dataDetail.genrenm}</span>
-          </NavLocation>
+          </S.NavLocation>
           <strong>{dataDetail.prfnm}</strong>
-          <br />
           <span>
             {dataDetail.prfpdfrom} ~ {dataDetail.prfpdto}
           </span>
-        </ContentTitle>
-        <ContentDetail>
-          <ContentDetailPoster />
-          <ContentDetailInfo>
+        </S.ContentTitle>
+        <S.ContentDetail>
+          <S.ContentDetailPoster>
+            <img src={dataDetail.poster} alt="" />
+          </S.ContentDetailPoster>
+          <S.ContentDetailInfo>
             <ul>
               <li>공연일시</li>
               <span>
@@ -341,130 +117,201 @@ const Ticketing = () => {
               <li style={{ color: "#AB003C" }}>티켓가격</li>
               <span>{dataDetail.pcseguidance}</span>
             </ul>
-          </ContentDetailInfo>
-        </ContentDetail>
-      </ContentWrpper>
-      <SeatWrapper>
-        <SeatBox style={{ border: "none" }}>
-          <BoxHeader>
+          </S.ContentDetailInfo>
+        </S.ContentDetail>
+      </S.ContentWrapper>
+      <S.SeatWrapper>
+        <S.SeatBox style={{ border: "none" }}>
+          <S.BoxHeader>
             <span style={{ color: "#AB003C" }}>01</span>
             <span>날짜 선택</span>
-          </BoxHeader>
+          </S.BoxHeader>
           <Calendar onDataChange={handleDataChange}></Calendar>
-        </SeatBox>
-        <SeatBox>
-          <BoxHeader>
+        </S.SeatBox>
+        <S.SeatBox>
+          <S.BoxHeader>
             <span style={{ color: "#AB003C" }}>02</span>
             <span>시간 선택</span>
-          </BoxHeader>
-          <TimeItemList>
+          </S.BoxHeader>
+          <S.TimeItemList>
             {showTimes.map((time, index) => (
-              <TimeItemBtn
+              <S.TimeItemBtn
                 key={index}
                 onClick={() => handleClick(time)}
                 className={`${select === time ? "select" : ""}`}
               >
                 {time}
-              </TimeItemBtn>
+              </S.TimeItemBtn>
             ))}
-          </TimeItemList>
-        </SeatBox>
-        <SeatBox style={{ backgroundColor: "#f6f6f6", display: "block" }}>
-          <BoxHeader style={{ width: "120px" }}>
+          </S.TimeItemList>
+        </S.SeatBox>
+        <S.SeatBox style={{ backgroundColor: "#f6f6f6", display: "block" }}>
+          <S.BoxHeader style={{ width: "120px" }}>
             <span style={{ color: "#AB003C" }}>예매 가능 좌석</span>
-          </BoxHeader>
+          </S.BoxHeader>
           <>
             {selectedTimeData && (
-              <SeatList>
-                <SeatItem>
+              <S.SeatList>
+                <S.SeatItem>
                   <span>VIP석</span>
                   <span>
-                    <SeatTimeData>{selectedTimeData.VIP}</SeatTimeData>
+                    <S.SeatTimeData>{selectedTimeData.VIP}</S.SeatTimeData>
                     <span>석</span>
                   </span>
-                </SeatItem>
-                <SeatItem>
+                </S.SeatItem>
+                <S.SeatItem>
                   <span>R석</span>
                   <span>
-                    <SeatTimeData>{selectedTimeData.R}</SeatTimeData>
+                    <S.SeatTimeData>{selectedTimeData.R}</S.SeatTimeData>
                     <span>석</span>
                   </span>
-                </SeatItem>
-                <SeatItem>
+                </S.SeatItem>
+                <S.SeatItem>
                   <span>S석</span>
                   <span>
-                    <SeatTimeData>{selectedTimeData.S}</SeatTimeData>
+                    <S.SeatTimeData>{selectedTimeData.S}</S.SeatTimeData>
                     <span>석</span>
                   </span>
-                </SeatItem>
-                <SeatItem>
+                </S.SeatItem>
+                <S.SeatItem>
                   <span>A석</span>
                   <span>
-                    <SeatTimeData>{selectedTimeData.A}</SeatTimeData>
+                    <S.SeatTimeData>{selectedTimeData.A}</S.SeatTimeData>
                     <span>석</span>
                   </span>
-                </SeatItem>
-              </SeatList>
+                </S.SeatItem>
+              </S.SeatList>
             )}
           </>
-        </SeatBox>
-      </SeatWrapper>
-      <PaymentWrapper>
+        </S.SeatBox>
+      </S.SeatWrapper>
+      <S.PaymentWrapper>
         <Payment />
-      </PaymentWrapper>
+      </S.PaymentWrapper>
 
-      <TicketingTabWrapper>
-        <TicketingTabs>
-          <TicketingTabList>
-            <TicketingTabItem>
-              <TicketingTabBtn
+      <S.ContentWrapper>
+        <S.TicketingTabs>
+          <S.TicketingTabList>
+            <S.TicketingTabItem>
+              <S.TicketingTabBtn
                 active={activeTab === 0}
                 onClick={() => handleTabClick(0)}
               >
                 상세정보
-              </TicketingTabBtn>
-            </TicketingTabItem>
-            <TicketingTabItem>
-              <TicketingTabBtn
+              </S.TicketingTabBtn>
+            </S.TicketingTabItem>
+            <S.TicketingTabItem>
+              <S.TicketingTabBtn
                 active={activeTab === 1}
                 onClick={() => handleTabClick(1)}
               >
                 관람후기
-              </TicketingTabBtn>
-            </TicketingTabItem>
-            <TicketingTabItem>
-              <TicketingTabBtn
+              </S.TicketingTabBtn>
+            </S.TicketingTabItem>
+            <S.TicketingTabItem>
+              <S.TicketingTabBtn
                 active={activeTab === 2}
                 onClick={() => handleTabClick(2)}
               >
                 장소안내
-              </TicketingTabBtn>
-            </TicketingTabItem>
-            <TicketingTabItem>
-              <TicketingTabBtn
+              </S.TicketingTabBtn>
+            </S.TicketingTabItem>
+            <S.TicketingTabItem>
+              <S.TicketingTabBtn
                 active={activeTab === 3}
                 onClick={() => handleTabClick(3)}
               >
                 예매유의사항
-              </TicketingTabBtn>
-            </TicketingTabItem>
-          </TicketingTabList>
-        </TicketingTabs>
-      </TicketingTabWrapper>
-      <TabContentWrapper>
+              </S.TicketingTabBtn>
+            </S.TicketingTabItem>
+          </S.TicketingTabList>
+        </S.TicketingTabs>
+      </S.ContentWrapper>
+      <S.ContentWrapper>
         {activeTab === 0 && (
-          <TabContentDetail>
+          <S.TabContentDetail>
             <h2>작품 상세 정보</h2>
-            <TabContentDetailImg>
+            <S.TabContentDetailImg>
               <img src={dataDetail.styurl} alt="" />
-            </TabContentDetailImg>
-          </TabContentDetail>
+            </S.TabContentDetailImg>
+          </S.TabContentDetail>
         )}
-        {activeTab === 1 && <TabContentReview>Review</TabContentReview>}
-        {activeTab === 2 && <TabContentPlace>Place</TabContentPlace>}
-        {activeTab === 3 && <TabContentNotice>Notice</TabContentNotice>}
-      </TabContentWrapper>
-    </TicketingWrapper>
+        {activeTab === 1 && <S.TabContentReview>Review</S.TabContentReview>}
+        {activeTab === 2 && (
+          <S.TabContentPlace>
+            <h2>공연장 안내</h2>
+            <hr />
+            <p>장소: {dataDetail.fcltynm}</p>
+            <p>전화번호: {dataDetail.telno}</p>
+            <PlaceMap></PlaceMap>
+            <PongButton
+              onClick={() => {
+                window.open(
+                  `https://map.kakao.com/link/map/공연장소,35.1482786,129.0654385`
+                );
+              }}
+            >
+              길 찾기
+            </PongButton>
+          </S.TabContentPlace>
+        )}
+        {activeTab === 3 && (
+          <S.TabContentNotice>
+            <S.TabContentPlace>
+              <h2>예매 유의사항</h2>
+              <ul>
+                <li>
+                  다른 이용자의 원활한 예매 및 취소에 지장을 초래할 정도로
+                  반복적인 행위를 지속하는 경우 회원의 서비스 이용을 제한할 수
+                  있습니다.
+                </li>
+                <li>당일 공연/전시 예매 및 취소는 불가합니다.</li>
+                <li>
+                  관람일자/회차 변경은 불가능하므로, 변경이 필요한 경우라면 취소
+                  후 다시 예매하시기 바랍니다.
+                </li>
+              </ul>
+              <hr />
+              <h2>예매내역 확인 및 취소</h2>
+              <ul>
+                <li>[마이페이지] - [예매 내역]에서 확인 및 취소 가능합니다.</li>
+                <li>예매 취소 시 취소수수료가 적용될 수 있습니다.</li>
+              </ul>
+              <hr />
+              <h2>환불안내</h2>
+              <ul>
+                <li style={{ listStyleType: "none", fontSize: "20px" }}>
+                  - 신용카드 결제 -
+                </li>
+                <li>
+                  일반적으로 당사의 취소 처리가 완료되고 4~5일 후 카드사의
+                  취소가 확인됩니다. (체크카드 동일)
+                </li>
+                <li>
+                  예매 취소 시점과 해당 카드사의 환불 처리기준에 따라 취소금액의
+                  환급방법과 환급일은 다소 차이가 있을 수 있으며, 예매 취소시
+                  기존에 결제하였던 내역을 취소하며 최초 결제하셨던 동일카드로
+                  취소 시점에 따라 취소수수료와 배송료를 재승인 합니다.
+                </li>
+                <br />
+                <li style={{ listStyleType: "none", fontSize: "20px" }}>
+                  - 무통장 입금의 경우 -
+                </li>
+                <li>
+                  예매 취소 시에 환불 계좌번호를 남기고, 그 계좌를 통해
+                  취소수수료를 제외한 금액을 환불 받습니다. 취소 후 고객님의
+                  계좌로 입금까지 대략 5~7일 정도가 소요됩니다. (주말 제외)
+                </li>
+                <li>
+                  환불은 반드시 예매자 본인 명의의 계좌로만 받으실 수 있습니다.
+                </li>
+              </ul>
+              <hr />
+            </S.TabContentPlace>
+          </S.TabContentNotice>
+        )}
+      </S.ContentWrapper>
+    </S.TicketingWrapper>
   );
 };
 
